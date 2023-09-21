@@ -10,7 +10,7 @@ const int motor2 = 4;
 const int pwm = 3;
 //para los giros y avances
 unsigned long tiempoInicioAvance = 0;  // Variable para controlar el tiempo de avance
-const unsigned long duracionAvance = 2000;  // Duración de avance en milisegundos (2 segundos)
+const unsigned long duracionAvance = 10000;  // Duración de avance en milisegundos (5 segundos)
 
 // Definir pines para el servo SG90
 const int pinServo = 6;
@@ -23,8 +23,8 @@ const int TRIG_PIN_2 = 9;
 const int ECHO_PIN_2 = 10;
 
 // Definir objetos de los sensores de ultrasonido
-NewPing s_Izq(TRIG_PIN_1, ECHO_PIN_1, 200);
-NewPing s_Der(TRIG_PIN_2, ECHO_PIN_2, 200);
+NewPing s_Izq(TRIG_PIN_1, ECHO_PIN_1, 400);
+NewPing s_Der(TRIG_PIN_2, ECHO_PIN_2, 400);
 
 // Definir variables para el contador de vueltas y giros
 int contadorVueltas = 0;
@@ -56,7 +56,7 @@ if (diferenciaDistancias < 20){
 avanzar(255);
 }
   // Determinar la dirección más larga
-  if ((diferenciaDistancias > 20) && (distanciaIzq > distanciaDer)) {
+  if ((diferenciaDistancias > 40) && (distanciaIzq > distanciaDer)) {
     // Gira a la izquierda
     giraIzquierda();
     contadorGiros++;
@@ -67,7 +67,7 @@ avanzar(255);
       avanzar(127);
     }
   }
-  if((diferenciaDistancias > 20) && (distanciaIzq < distanciaDer)) {
+  if((diferenciaDistancias > 40) && (distanciaIzq < distanciaDer)) {
     // Gira a la derecha
     giraDerecha();
     contadorGiros++;
